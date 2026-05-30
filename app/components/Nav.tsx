@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 
 const navLinks = [
+  { label: "Home", href: "#" },
   { label: "Tour", href: "#tour" },
   { label: "Videos", href: "#videos" },
   { label: "About", href: "#about" },
@@ -61,6 +62,7 @@ const socialLinks = [
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -68,27 +70,60 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const sectionIds = ["tour", "videos", "about", "contact"];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        });
+      },
+      { rootMargin: "-30% 0px -60% 0px" }
+    );
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    const onScroll = () => {
+      if (window.scrollY < 200) setActiveSection("");
+    };
+    window.addEventListener("scroll", onScroll);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
+  const isActive = (href: string) => {
+    if (href === "#") return activeSection === "";
+    return activeSection === href.replace("#", "");
+  };
+
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-black/95 backdrop-blur-sm shadow-lg" : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-md ${
+        scrolled ? "bg-black/95 shadow-lg" : "bg-black/50"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-20">
         <Link
           href="/"
-          className="font-display text-xl font-bold tracking-widest uppercase text-white hover:text-[#e8c84a] transition-colors"
+          className="font-display text-xl tracking-widest uppercase text-white hover:text-[#e8c84a] transition-colors"
         >
           Andy Alvey
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-2">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="font-display text-sm tracking-widest uppercase text-white/80 hover:text-[#e8c84a] transition-colors"
+              className={`font-knockout text-base tracking-[0.25em] uppercase px-4 py-1.5 rounded transition-colors ${
+                isActive(link.href)
+                  ? "bg-white text-black"
+                  : "text-white/80 hover:text-white"
+              }`}
             >
               {link.label}
             </a>
@@ -138,7 +173,7 @@ export default function Nav() {
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="font-display text-base tracking-widest uppercase text-white/80 hover:text-[#e8c84a] transition-colors"
+              className="font-knockout text-lg tracking-[0.25em] uppercase text-white/80 hover:text-white transition-colors"
             >
               {link.label}
             </a>

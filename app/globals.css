@@ -3,6 +3,8 @@
 @theme inline {
   --font-sans: var(--font-inter);
   --font-display: var(--font-oswald);
+  --font-caesar: var(--font-caesar);
+  --font-knockout: var(--font-knockout);
   --color-gold: #e8c84a;
   --color-dark: #0a0a0a;
   --color-mid: #111111;

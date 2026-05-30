@@ -22,9 +22,9 @@ export default function EmailSMS() {
   };
 
   return (
-    <section className="bg-black py-20 px-6">
+    <section id="signup" className="bg-black py-20 px-6">
       <div className="max-w-lg mx-auto">
-        <div className="bg-[#0d2b2b] px-8 py-12">
+        <div className="bg-[#0d2b2b] px-8 py-12 rounded-2xl">
           {submitted ? (
             <div className="text-center py-8">
               <p className="font-display text-2xl font-bold text-white tracking-wide uppercase mb-3">
@@ -37,7 +37,7 @@ export default function EmailSMS() {
           ) : (
             <>
               <div className="text-center mb-8">
-                <h2 className="font-display text-3xl sm:text-4xl font-bold text-white tracking-wide uppercase leading-tight mb-2">
+                <h2 className="font-display text-4xl sm:text-5xl font-bold text-white tracking-wide uppercase leading-tight mb-2">
                   Tell Me To Come To Your City!
                 </h2>
                 <p className="font-display text-white/60 text-xs tracking-[0.2em] uppercase">
@@ -46,14 +46,14 @@ export default function EmailSMS() {
               </div>
 
               {/* Email / SMS toggle */}
-              <div className="flex mb-6">
+              <div className="flex gap-2 mb-6">
                 <button
                   type="button"
                   onClick={() => setMode("email")}
-                  className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-xs font-display tracking-widest uppercase transition-colors border ${
+                  className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-xs font-display tracking-widest uppercase transition-colors rounded-md ${
                     mode === "email"
-                      ? "bg-[#1a5050] border-[#1a5050] text-white"
-                      : "bg-transparent border-white/20 text-white/50 hover:text-white"
+                      ? "bg-[#1a5050] text-white"
+                      : "bg-black/30 text-white/50 hover:text-white"
                   }`}
                 >
                   <EmailIcon />
@@ -62,10 +62,10 @@ export default function EmailSMS() {
                 <button
                   type="button"
                   onClick={() => setMode("sms")}
-                  className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-xs font-display tracking-widest uppercase transition-colors border-t border-b border-r ${
+                  className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-xs font-display tracking-widest uppercase transition-colors rounded-md ${
                     mode === "sms"
-                      ? "bg-[#1a5050] border-[#1a5050] text-white"
-                      : "bg-transparent border-white/20 text-white/50 hover:text-white"
+                      ? "bg-[#1a5050] text-white"
+                      : "bg-black/30 text-white/50 hover:text-white"
                   }`}
                 >
                   <SmsIcon />
@@ -81,7 +81,7 @@ export default function EmailSMS() {
                     placeholder="YOUR@EXAMPLE.COM"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-[#0a1f1f] border border-white/10 text-white placeholder-white/30 text-sm px-4 py-3 outline-none focus:border-[#e8c84a]/50 font-display tracking-wider"
+                    className="w-full bg-[#0a1f1f] border border-white/10 text-white placeholder-white/30 text-sm px-4 py-3 outline-none focus:border-[#1a5050] font-display tracking-wider rounded-md"
                   />
                 ) : (
                   <input
@@ -90,7 +90,7 @@ export default function EmailSMS() {
                     placeholder="YOUR PHONE NUMBER"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="w-full bg-[#0a1f1f] border border-white/10 text-white placeholder-white/30 text-sm px-4 py-3 outline-none focus:border-[#e8c84a]/50 font-display tracking-wider"
+                    className="w-full bg-[#0a1f1f] border border-white/10 text-white placeholder-white/30 text-sm px-4 py-3 outline-none focus:border-[#1a5050] font-display tracking-wider rounded-md"
                   />
                 )}
 
@@ -99,43 +99,43 @@ export default function EmailSMS() {
                   placeholder="POSTAL CODE"
                   value={postal}
                   onChange={(e) => setPostal(e.target.value)}
-                  className="w-full bg-[#0a1f1f] border border-white/10 text-white placeholder-white/30 text-sm px-4 py-3 outline-none focus:border-[#e8c84a]/50 font-display tracking-wider"
+                  className="w-full bg-[#0a1f1f] border border-white/10 text-white placeholder-white/30 text-sm px-4 py-3 outline-none focus:border-[#1a5050] font-display tracking-wider rounded-md"
                 />
 
                 <div className="space-y-3 pt-1">
-                    <label className="flex gap-3 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        required
-                        checked={check1}
-                        onChange={(e) => setCheck1(e.target.checked)}
-                        className="mt-0.5 flex-shrink-0 accent-[#1a5050]"
-                      />
-                      <span className="text-white/50 text-[11px] leading-relaxed">
-                        By checking this box, I agree to receive updates and
-                        promotional {mode === "sms" ? "text messages" : "emails"} related to
-                        products, events and services from Andy Alvey.{" "}
-                        {mode === "sms"
-                          ? "Message & data rates may apply. Reply STOP to opt out. HELP for help."
-                          : "You may unsubscribe at any time."}
-                      </span>
-                    </label>
-                    <label className="flex gap-3 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        required
-                        checked={check2}
-                        onChange={(e) => setCheck2(e.target.checked)}
-                        className="mt-0.5 flex-shrink-0 accent-[#1a5050]"
-                      />
-                      <span className="text-white/50 text-[11px] leading-relaxed">
-                        By checking this box, I agree to receive transactional
-                        text messages from Andy Alvey related to my account,
-                        orders, or services. Frequency may vary. Message &amp;
-                        data rates may apply. Reply STOP to opt out. HELP for
-                        help.
-                      </span>
-                    </label>
+                  <label className="flex gap-3 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      required
+                      checked={check1}
+                      onChange={(e) => setCheck1(e.target.checked)}
+                      className="mt-0.5 flex-shrink-0 accent-[#1a5050]"
+                    />
+                    <span className="text-white/50 text-[11px] leading-relaxed">
+                      By checking this box, I agree to receive updates and
+                      promotional {mode === "sms" ? "text messages" : "emails"} related to
+                      products, events and services from Andy Alvey.{" "}
+                      {mode === "sms"
+                        ? "Message & data rates may apply. Reply STOP to opt out. HELP for help."
+                        : "You may unsubscribe at any time."}
+                    </span>
+                  </label>
+                  <label className="flex gap-3 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      required
+                      checked={check2}
+                      onChange={(e) => setCheck2(e.target.checked)}
+                      className="mt-0.5 flex-shrink-0 accent-[#1a5050]"
+                    />
+                    <span className="text-white/50 text-[11px] leading-relaxed">
+                      By checking this box, I agree to receive transactional
+                      text messages from Andy Alvey related to my account,
+                      orders, or services. Frequency may vary. Message &amp;
+                      data rates may apply. Reply STOP to opt out. HELP for
+                      help.
+                    </span>
+                  </label>
                 </div>
 
                 <div className="text-center pt-1">
@@ -151,7 +151,7 @@ export default function EmailSMS() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-[#1a5050] hover:bg-[#1f6060] text-white font-display text-sm tracking-[0.3em] uppercase py-4 transition-colors disabled:opacity-60"
+                  className="w-full bg-[#1a5050] hover:bg-[#1f6060] text-white font-display text-sm tracking-[0.3em] uppercase py-4 rounded-md transition-colors disabled:opacity-60"
                 >
                   {loading ? "Submitting..." : "Submit"}
                 </button>

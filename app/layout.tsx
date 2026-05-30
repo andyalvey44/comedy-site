@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Oswald } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
 const inter = Inter({
@@ -11,6 +12,19 @@ const oswald = Oswald({
   variable: "--font-oswald",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+});
+
+const caesar = localFont({
+  src: [
+    { path: "../public/OPTICeasar-Light.otf", weight: "300" },
+    { path: "../public/OPTICeasar-Regular.otf", weight: "400" },
+  ],
+  variable: "--font-caesar",
+});
+
+const knockout = localFont({
+  src: "../public/Knockout HTF50-Welterweight Regular.otf",
+  variable: "--font-knockout",
 });
 
 export const metadata: Metadata = {
@@ -30,7 +44,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${oswald.variable} h-full antialiased`}
+      className={`${inter.variable} ${oswald.variable} ${caesar.variable} ${knockout.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-black text-white">
         {children}

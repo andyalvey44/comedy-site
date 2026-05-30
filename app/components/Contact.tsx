@@ -3,11 +3,8 @@ export default function Contact() {
     <section id="contact" className="bg-[#0a0a0a] py-24 px-6">
       <div className="max-w-5xl mx-auto">
         <div className="mb-14">
-          <p className="font-display text-[#e8c84a] text-xs tracking-[0.35em] uppercase mb-3">
-            Get In Touch
-          </p>
-          <h2 className="font-display text-5xl sm:text-6xl font-bold tracking-tight text-white">
-            Contact
+          <h2 className="font-caesar text-8xl sm:text-9xl tracking-tight text-white uppercase leading-none">
+            Contacts
           </h2>
         </div>
 
